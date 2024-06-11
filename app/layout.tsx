@@ -20,7 +20,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (hag
+  return (
     <html lang="en">
       <body>
         <ThemeProvider>
