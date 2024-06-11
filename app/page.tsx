@@ -180,9 +180,9 @@ export default function Home() {
               </Link>
             </div>
             <img
-              className="absolute -left-2 bottom-0 opacity-20 md:opacity-95"
+              className="absolute -left-2 bottom-0 opacity-20 lg:opacity-95"
               width={300}
-              src="./blocks1.svg"
+              src="./bottom-blocks.svg"
             ></img>
           </div>
         </div>
