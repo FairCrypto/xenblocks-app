@@ -39,7 +39,7 @@ export default function Home() {
     <main className="flex flex-col mx-0 min-h-screen">
       <NavBar/>
 
-      <div className="hero h-[400px] lg:h-[400px] xl:h-[600px] bg-base-100">
+      <div className="hero h-[424px] md:h-[400px] lg:h-[400px] xl:h-[600px] bg-base-100">
         <div className="hero-content grid grid-cols-1 md:grid-cols-8">
           <div className="md:col-span-5">
 
