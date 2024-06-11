@@ -92,7 +92,7 @@ const config: Config = {
             "PT Mono",
           "body": {
             "fontFamily":
-              "PT Mono",
+              "ProtoMono",
          },
           "h1": {
             "fontFamily": "ProtoMono",
