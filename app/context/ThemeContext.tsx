@@ -48,7 +48,6 @@ export const ThemeProvider = ({ children }: any) => {
   useEffect(() => {
     setTheme("xenblocks");
     setIsMounted(true);
-
   }, []);
 
   if (!isMounted) return null;

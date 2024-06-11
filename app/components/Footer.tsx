@@ -1,10 +1,10 @@
 import Link from "next/link";
-import {IoTrophy} from "react-icons/io5";
-import {BsSendFill} from "react-icons/bs";
-import {SiGitbook} from "react-icons/si";
+import { IoTrophy } from "react-icons/io5";
+import { BsSendFill } from "react-icons/bs";
+import { SiGitbook } from "react-icons/si";
 import { SiGithub } from "react-icons/si";
 
-export default function Footer({isLoading = false}: { isLoading?: boolean }) {
+export default function Footer({ isLoading = false }: { isLoading?: boolean }) {
   return (
     <footer
       className={`footer footer-center z-[2] mt-auto p-5 bg-base-100 ${!isLoading && "fade-in"}`}
@@ -39,7 +39,6 @@ export default function Footer({isLoading = false}: { isLoading?: boolean }) {
             </button>
           </Link>
         </div>
-
       </nav>
     </footer>
   );

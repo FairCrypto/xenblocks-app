@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'ProtoMono';
-  src: url('/fonts/ProtoMono-Regular.ttf');
+  font-family: "ProtoMono";
+  src: url("/fonts/ProtoMono-Regular.ttf");
 }
 
 :root {

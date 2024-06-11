@@ -6,7 +6,11 @@ export const NavBar = () => {
   return (
     <div className="navbar p-0 bg-base-100 opacity-85 z-[20] max-w-screen-xl mx-auto px-4 sm:py-6 xl:pt-10">
       <a className="btn btn-link animate-none" href="/">
-        <img className="w-[100px] sm:w-[140px] lg:[160px]" src="/xenblocks-logo.svg" alt="Xenblocks Logo"/>
+        <img
+          className="w-[100px] sm:w-[140px] lg:[160px]"
+          src="/xenblocks-logo.svg"
+          alt="Xenblocks Logo"
+        />
       </a>
 
       <Link className="ml-auto" href="https://xenblocks.io/leaderboard">
