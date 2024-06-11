@@ -1,72 +1,27 @@
-import { FaGithub } from "react-icons/fa";
-import { MdLightMode } from "react-icons/md";
-import Image from "next/image";
-
-import { useContext } from "react";
-import { ThemeContext } from "@/app/context/ThemeContext";
-import tailwindConfig from "@/tailwind.config";
 import Link from "next/link";
+import { IoTrophy } from "react-icons/io5";
+import { BsSendFill } from "react-icons/bs";
 
 export const NavBar = () => {
-  const { changeTheme } = useContext(ThemeContext);
-  const { theme } = useContext(ThemeContext);
-
-  const DARK_THEMES = {
-    dark: true,
-    synthwave: true,
-    forest: true,
-    aqua: true,
-    black: true,
-    luxury: true,
-    dracula: true,
-    business: true,
-    night: true,
-    coffee: true,
-    dim: true,
-    sunset: true,
-    halloween: true,
-  };
-
-  const logo = () => {
-    // @ts-ignore
-    if (DARK_THEMES[theme]) {
-      return "/solxen-white.png";
-    }
-    return "/solxen-black.png";
-  };
-
   return (
-    <div className="navbar p-0 bg-base-100 shadow-xl opacity-85 flex justify-between z-[20]">
-      <a className="btn btn-link animate-none text-lg" href="/">
-        <Image src={logo()} alt="solXEN Logo" width={100} height={40} />
+    <div className="navbar p-0 bg-base-100 opacity-85 z-[20] max-w-screen-xl mx-auto px-4 sm:py-6 xl:pt-10">
+      <a className="btn btn-link animate-none" href="/">
+        <img className="w-[100px] sm:w-[140px] lg:[160px]" src="/xenblocks-logo.svg" alt="Xenblocks Logo"/>
       </a>
 
-      <Link className=" ml-auto" href="https://github.com/FairCrypto/sol-xen">
-        <button className="btn btn-outline btn-accent">
-          <FaGithub size="2em"></FaGithub>
-          Get Started
+      <Link className="ml-auto" href="https://xenblocks.io/leaderboard">
+        <button className="btn btn-ghost btn-accent btn-mono btn-xs sm:btn-lg">
+          <IoTrophy></IoTrophy>
+          LEADERBOARD
         </button>
       </Link>
 
-      <div className="join join-vertical">
-        <div className="dropdown dropdown-hover dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost m-1">
-            <MdLightMode size="2em" />
-          </div>
-          <ul
-            tabIndex={0}
-            className="dropdown-content z-[1] menu p-2 drop-shadow-md bg-base-100 rounded-box w-52"
-          >
-            {tailwindConfig.daisyui.themes.map((theme: string) => (
-              <li key={theme}>
-                <a onClick={() => (changeTheme ? changeTheme(theme) : null)}>
-                  {theme}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <Link className="" href="https://t.me/+yDcqqTGMNC4yNjdj">
+        <button className="btn btn-ghost btn-accent btn-mono btn-xs btn-mono sm:btn-lg">
+          <BsSendFill></BsSendFill>
+          COMMUNITY
+        </button>
+      </Link>
     </div>
   );
 };

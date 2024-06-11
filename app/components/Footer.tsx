@@ -1,37 +1,45 @@
-export default function Footer({ isLoading = false }: { isLoading?: boolean }) {
+import Link from "next/link";
+import {IoTrophy} from "react-icons/io5";
+import {BsSendFill} from "react-icons/bs";
+import {SiGitbook} from "react-icons/si";
+import { SiGithub } from "react-icons/si";
+
+export default function Footer({isLoading = false}: { isLoading?: boolean }) {
   return (
     <footer
-      className={`footer footer-center z-[2] mt-auto p-5 text-accent-content drop-shadow-xl shadow-xl bg-accent text-gray-700 opacity-0 ${!isLoading && "fade-in"}`}
+      className={`footer footer-center z-[2] mt-auto p-5 bg-base-100 ${!isLoading && "fade-in"}`}
     >
-      <aside>
-        <p className="font-bold">solXEN</p>
-        <p>Copyright © 2024 - All rights reserved</p>
-      </aside>
       <nav>
-        <div className="grid grid-flow-col gap-4">
-          <a href="https://www.twitter.com/mrJackLevin">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="fill-current"
-            >
-              <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-            </svg>
-          </a>
-          <a href="https://www.youtube.com/watch?v=FALKXwMQvHg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="fill-current"
-            >
-              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-            </svg>
-          </a>
+        <div className="">
+          <Link className="sm:mx-3" href="https://xenblocks.io/leaderboard">
+            <button className="btn btn-ghost btn-accent btn-mono btm-nav-sm sm:btn-lg">
+              <IoTrophy />
+              LEADERBOARD
+            </button>
+          </Link>
+
+          <Link className="sm:mx-3" href="https://xenblocks.io/leaderboard">
+            <button className="btn btn-ghost btn-accent btn-mono btm-nav-sm sm:btn-lg">
+              <SiGithub />
+              GITHUB
+            </button>
+          </Link>
+
+          <Link className="sm:mx-3" href="https://xenblocks.io/leaderboard">
+            <button className="btn btn-ghost btn-accent btn-mono btm-nav-sm sm:btn-lg">
+              <SiGitbook />
+              GITBOOK
+            </button>
+          </Link>
+
+          <Link className="sm:mx-3" href="https://t.me/+yDcqqTGMNC4yNjdj">
+            <button className="btn btn-ghost btn-accent btn-mono btm-nav-sm btn-mono sm:btn-lg">
+              <BsSendFill />
+              COMMUNITY
+            </button>
+          </Link>
         </div>
+
       </nav>
     </footer>
   );

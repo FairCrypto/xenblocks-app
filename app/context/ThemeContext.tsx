@@ -27,30 +27,36 @@ const DARK_THEMES = {
 type ThemeKey = keyof typeof DARK_THEMES;
 
 export const ThemeProvider = ({ children }: any) => {
-  const [theme, setTheme] = useState<string>("light");
+  const [theme, setTheme] = useState<string>("xenblocks");
   const [isDark, setIsDark] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState(false);
 
+  // useEffect(() => {
+  //   let defaultTheme = "myCustomTheme";
+  //   if (
+  //     window.matchMedia &&
+  //     window.matchMedia("(prefers-color-scheme: dark)").matches
+  //   ) {
+  //     defaultTheme = "myCustomTheme";
+  //   }
+  //   setIsMounted(true);
+  //   const storedTheme = localStorage.getItem("theme") || defaultTheme;
+  //   setIsDark(DARK_THEMES[storedTheme as ThemeKey] ?? false);
+  //   setTheme(storedTheme);
+  // }, [theme]);
+
   useEffect(() => {
-    let defaultTheme = "light";
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      defaultTheme = "dark";
-    }
+    setTheme("xenblocks");
     setIsMounted(true);
-    const storedTheme = localStorage.getItem("theme") || defaultTheme;
-    setIsDark(DARK_THEMES[storedTheme as ThemeKey] ?? false);
-    setTheme(storedTheme);
-  }, [theme]);
+
+  }, []);
 
   if (!isMounted) return null;
 
   const changeTheme = (theme: any) => {
-    setTheme(theme);
+    // setTheme(theme);
     setIsDark(DARK_THEMES[theme as ThemeKey] ?? false);
-    localStorage.setItem("theme", theme);
+    // localStorage.setItem("theme", theme);
   };
   return (
     <ThemeContext.Provider value={{ theme, changeTheme, isDark }}>

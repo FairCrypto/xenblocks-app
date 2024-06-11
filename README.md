@@ -1,4 +1,4 @@
-# solXEN Web App
+# XENBLOCKS Web App
 
 This is a [Next.js](https://nextjs.org/) project with [Tailwind CSS](https://tailwindcss.com/) and [DaisyUI](https://daisyui.com/) for the UI components.
 
