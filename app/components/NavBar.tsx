@@ -10,14 +10,14 @@ export const NavBar = () => {
       </a>
 
       <Link className="ml-auto" href="https://xenblocks.io/leaderboard">
-        <button className="btn btn-ghost btn-accent btn-mono btn-xs sm:btn-lg">
+        <button className="btn btn-ghost btn-neutral hover:bg-base-100 hover:text-accent btn-mono btn-xs sm:btn-lg">
           <IoTrophy></IoTrophy>
           LEADERBOARD
         </button>
       </Link>
 
       <Link className="" href="https://t.me/+yDcqqTGMNC4yNjdj">
-        <button className="btn btn-ghost btn-accent btn-mono btn-xs btn-mono sm:btn-lg">
+        <button className="btn btn-ghost btn-neutral hover:bg-base-100 hover:text-accent btn-mono btn-xs btn-mono sm:btn-lg">
           <BsSendFill></BsSendFill>
           COMMUNITY
         </button>

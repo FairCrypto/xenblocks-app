@@ -52,7 +52,7 @@ export default function Home() {
                 of the X1 blockchain
               </p>
               <Link href="./leaderboard">
-                <button className="btn btn-primary font-thin text-lg">START MINING</button>
+                <button className="btn btn-primary hover:bg-base-100 hover:text-primary font-thin text-lg">START MINING</button>
               </Link>
               <a href="https://info.xenpedia.com/xenblocks/RQEGw43Y8s86czyWkYpj">
                 <button className="ml-2 btn btn-primary btn-outline font-thin text-lg">
@@ -155,7 +155,7 @@ export default function Home() {
               <div className="mb-3">THE BEST TIME TO START</div>
               <div>MINING WAS YESTERDAY</div></h2>
             <Link href="https://github.com/jacklevin74/xenminer">
-              <button className="btn btn-lg btn-primary">START MINING</button>
+              <button className="btn btn-primary hover:bg-base-100 hover:text-primary font-thin text-lg">START MINING</button>
             </Link>
           </div>
           <img className="absolute -left-2 bottom-0 opacity-20 md:opacity-95" width={300} src="./blocks1.svg"></img>

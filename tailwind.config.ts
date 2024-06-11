@@ -75,7 +75,7 @@ const config: Config = {
           "accent-content": "#000000", // Text color on accent background
           "neutral": "#3d4451", // Neutral color, adjust as needed
           "neutral-focus": "#2a2e37", // Focus state for neutral color
-          "neutral-content": "#ffffff", // Text color on neutral background
+          "neutral-content": "#B1B1B1", // Text color on neutral background
           "base-100": "#161616", // Base color for backgrounds
           "base-200": "#070C0D", // Base color for slightly darker backgrounds
           "base-300": "#444444", // Base color for even darker backgrounds
