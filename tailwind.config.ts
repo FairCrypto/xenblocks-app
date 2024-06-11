@@ -95,26 +95,26 @@ const config: Config = {
               "PT Mono",
          },
           "h1": {
-            "fontFamily": "PT Mono",
+            "fontFamily": "ProtoMono",
           },
           "h2": {
-            "fontFamily": "PT Mono",
+            "fontFamily": "ProtoMono",
           },
           "h3": {
-            "fontFamily": "PT Mono",
+            "fontFamily": "ProtoMono",
           },
           "h4": {
-            "fontFamily": "PT Mono",
+            "fontFamily": "ProtoMono",
           },
           ".btn": {
-            "fontFamily": "PT Mono",
+            "fontFamily": "ProtoMono",
           },
           ".tab": {
-            "fontFamily": "PT Mono",
+            "fontFamily": "ProtoMono",
           },
           ".alert": {
             "border": "2px dashed",
-            "fontFamily": "PT Mono",
+            "fontFamily": "ProtoMono",
           }
         }
       }

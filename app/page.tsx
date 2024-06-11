@@ -4,7 +4,6 @@ import { NavBar } from "@/app/components/NavBar";
 import Link from "next/link";
 import "react-medium-image-zoom/dist/styles.css";
 import Footer from "@/app/components/Footer";
-import { useStatsData } from "@/app/hooks/StateDataHook";
 import { ReactNode } from "react";
 import { SiGitbook } from "react-icons/si";
 
@@ -94,7 +93,7 @@ export default function Home() {
             <article className="">
               <h2 className="mb-6 lg:text-2xl text-accent">FIXED GLOBAL HASHRATE</h2>
               <p className="mb-6 text-sm sm:text-xs lg:text-base lg:leading-loose uppercase text-justify leading-loose">
-                As the network's overall hash power grows, the mechanism adjusts to reduce individual miners' hash
+                As the network&apos;s overall hash power grows, the mechanism adjusts to reduce individual miners&apos; hash
                 power,
                 decoupling mining intensity from energy consumption by shifting the computational burden to memory.
               </p>
@@ -140,7 +139,7 @@ export default function Home() {
             <p className="mb-6 uppercase text-justify leading-loose">
               Consequently, Xenblocks functions as a hybrid system combining Proof of Stake (PoS) and Proof of Work
               (PoW).
-              Its PoW component mirrors Bitcoin's mining process, involving the solving of cryptographic challenges
+              Its PoW component mirrors Bitcoin&apos;s mining process, involving the solving of cryptographic challenges
               and discovering specific hashes. The inclusion of staking mechanisms helps alleviate selling pressure from
               miners.
             </p>
