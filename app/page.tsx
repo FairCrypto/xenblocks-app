@@ -39,12 +39,12 @@ export default function Home() {
     <main className="flex flex-col mx-0 min-h-screen">
       <NavBar/>
 
-      <div className="hero h-[424px] md:h-[400px] lg:h-[400px] xl:h-[600px] bg-base-100">
+      <div className="hero h-[410px] md:h-[400px] lg:h-[400px] xl:h-[600px] bg-base-100">
         <div className="hero-content grid grid-cols-1 md:grid-cols-8">
           <div className="md:col-span-5">
 
             <div className="mx-2 sm:mx-8">
-              <h1 className="text-3xl lg:text-4xl xl:text-5xl font-mono text-accent mb-6">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-mono text-accent mb-6">
                 <div className="mb-3">PROOF-OF-WORK MINING</div> <div>ACCESSIBLE TO EVERYONE</div>
               </h1>
               <p className="mb-10 max-w-lg uppercase leading-loose text-justify sm:text-left">
