@@ -40,8 +40,8 @@ export default function Home() {
       <NavBar/>
 
       <div className="hero h-[410px] md:h-[400px] lg:h-[400px] xl:h-[600px] bg-base-100">
-        <div className="hero-content grid grid-cols-1 md:grid-cols-8">
-          <div className="md:col-span-5">
+        <div className="hero-content grid grid-cols-1 md:grid-cols-12">
+          <div className="md:col-span-7">
 
             <div className="mx-2 sm:mx-8">
               <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-mono text-accent mb-6">
@@ -62,8 +62,8 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="absolute opacity-5 md:opacity-95 md:relative md:block md:col-span-3">
-            <img className="px-8" src="./pickaxe.svg" alt="pickaxe image"></img>
+          <div className="absolute opacity-5 md:opacity-100 md:relative md:block md:col-span-5">
+            <img className="px-8" src="./pick-axe.svg" alt="pickaxe image"></img>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ export default function Home() {
       <Section title="HOW IT WORKS" backgroundColor="bg-base-200">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-28 md:px-20">
           <div className="absolute md:relative opacity-10 md:opacity-100">
-            <img className="" src="./howitworks.svg" alt="how it works"></img>
+            <img className="" src="./how-it-works.svg" alt="how it works"></img>
           </div>
 
           <div className="">
