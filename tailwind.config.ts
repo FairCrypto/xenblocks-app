@@ -115,7 +115,11 @@ const config: Config = {
           ".alert": {
             "border": "2px dashed",
             "fontFamily": "ProtoMono",
-          }
+          },
+          ".btn-lg": {
+            "height": "3rem",
+            "minHeight": "3rem",
+          },
         }
       }
     ]

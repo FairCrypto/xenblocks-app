@@ -1,11 +1,31 @@
-"use client";
-
 import { NavBar } from "@/app/components/NavBar";
 import Link from "next/link";
 import "react-medium-image-zoom/dist/styles.css";
 import Footer from "@/app/components/Footer";
 import { ReactNode } from "react";
 import { SiGitbook } from "react-icons/si";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  openGraph: {
+    title: "PROOF-OF-WORK MINING",
+    description:
+      "XENBLOCKS SERVE AS THE PROOF-OF-WORK (POW) COMPONENT OF THE X1 BLOCKCHAIN",
+    url: "https://xenblocks.ai",
+    type: "website",
+    images: [
+      {
+        url: "https://xenblocks.ai/xenblocks-logo.png",
+        width: 800,
+        height: 156,
+        alt: "Xenblocks Logo",
+      },
+    ],
+  },
+  twitter: {
+    creator: "@XEN_Crypto",
+  },
+};
 
 function Section({
   children,
@@ -39,25 +59,25 @@ export default function Home() {
     <main className="flex flex-col mx-0 min-h-screen">
       <NavBar />
 
-      <div className="hero py-8 mt-0 mb-4 sm:py-10 sm:my-8 bg-base-100">
+      <div className="hero py-8 mt-0 mb-4 sm:py-8 sm:my-8 bg-base-100">
         <div className="hero-content grid grid-cols-1 md:grid-cols-12">
           <div className="md:col-span-7">
             <div className="mx-2 sm:mx-8">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl xl:text-5xl font-mono text-accent mb-6">
-                <div className="mb-3">PROOF-OF-WORK MINING</div>{" "}
+              <h1 className="text-[1.4rem] sm:text-2xl lg:text-3xl xl:text-[2.8rem] font-mono text-accent mb-10 md:mb-12">
+                <div className="mb-2 lg:mb-4 xl:mb-6">PROOF-OF-WORK MINING</div>
                 <div>ACCESSIBLE TO EVERYONE</div>
               </h1>
-              <p className="mb-10 max-w-lg uppercase leading-loose text-justify sm:text-left">
+              <p className="mb-12 max-w-lg uppercase leading-loose md:leading-loose lg:leading-loose text-justify text-xs sm:text-left lg:text-lg">
                 XenBLOCKs serve as the Proof-of-Work (PoW) component of the X1
                 blockchain
               </p>
               <Link href="./leaderboard">
-                <button className="btn btn-primary btn-sm sm:btn-md hover:bg-base-100 hover:text-primary font-thin text-lg">
+                <button className="btn btn-primary btn-sm sm:btn-md lg:btn-lg hover:bg-base-100 hover:text-primary font-thin text-lg">
                   START MINING
                 </button>
               </Link>
               <a href="https://info.xenpedia.com/xenblocks/RQEGw43Y8s86czyWkYpj">
-                <button className="ml-2 btn btn-sm sm:btn-md btn-primary btn-outline font-thin text-lg">
+                <button className="ml-2 btn btn-sm sm:btn-md lg:btn-lg btn-primary btn-outline font-thin text-lg">
                   GITBOOK
                   <SiGitbook />
                 </button>
@@ -65,11 +85,7 @@ export default function Home() {
             </div>
           </div>
           <div className="absolute opacity-15 md:opacity-100 md:relative md:block md:col-span-5">
-            <img
-              className="px-8"
-              src="./pick-axe.svg"
-              alt="pickaxe image"
-            ></img>
+            <img src="./pick-axe.svg" alt="pickaxe image"></img>
           </div>
         </div>
       </div>
