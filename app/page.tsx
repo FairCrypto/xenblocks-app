@@ -2,9 +2,9 @@ import { NavBar } from "@/app/components/NavBar";
 import Link from "next/link";
 import "react-medium-image-zoom/dist/styles.css";
 import Footer from "@/app/components/Footer";
-import { ReactNode } from "react";
 import { SiGitbook } from "react-icons/si";
 import { Metadata } from "next";
+import { Section } from "@/app/components/Section";
 
 export const metadata: Metadata = {
   openGraph: {
@@ -26,33 +26,6 @@ export const metadata: Metadata = {
     creator: "@XEN_Crypto",
   },
 };
-
-function Section({
-  children,
-  title,
-  backgroundColor,
-}: {
-  children: ReactNode;
-  title: string;
-  backgroundColor: string;
-}) {
-  return (
-    <div>
-      <div
-        className={`flex flex-content justify-center my-0 py-8 sm:py-10 w-full mx-0 ${backgroundColor}`}
-      >
-        <div className="card mx-2 sm:mx-8 lg:mx-2 w-full max-w-screen-xl">
-          <div className="card-body py-6 sm:py-8">
-            <div className="card-title mb-6">
-              <h2 className="text-2xl text-accent">{title}</h2>
-            </div>
-            {children}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function Home() {
   return (

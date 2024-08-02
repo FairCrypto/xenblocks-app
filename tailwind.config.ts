@@ -67,8 +67,8 @@ const config: Config = {
           "primary": "#19FF14",
           "primary-focus": "#19FF14", // You can adjust this to make it slightly darker for the focus state
           "primary-content": "#000000", // Text color on primary background
-          "secondary": "#f6d860", // Secondary color, adjust as needed
-          "secondary-focus": "#e5c14f", // Focus state for secondary color
+          "secondary": "#334143", // Secondary color, adjust as needed
+          "secondary-focus": "#445759", // Focus state for secondary color
           "secondary-content": "#000000", // Text color on secondary background
           "accent": "#ffffff", // Accent color, adjust as needed
           "accent-focus": "#2ba59b", // Focus state for accent color
@@ -83,7 +83,7 @@ const config: Config = {
           "info": "#2094f3", // Info color
           "success": "#009485", // Success color
           "warning": "#ff9900", // Warning color
-          "error": "#ff5724", // Error color
+          "error": "#FF1414", // Error color
           "--rounded-box": "0",
           "--rounded-btn": "0",
           "--rounded-badge": "0",
