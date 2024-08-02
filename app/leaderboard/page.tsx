@@ -154,10 +154,10 @@ export default function Leaderboard() {
             </tbody>
           </table>
         </div>
-        <div className="flex justify-between w-full mt-3">
+        <div className="flex items-center justify-between w-full mt-3">
           <div className="mr-auto">
             <div className="flex items-center">
-              <span className="text-sm mr-1">ROWS PER PAGE</span>
+              <span className="text-sm mr-1 hidden sm:inline-block">ROWS PER PAGE</span>
               <details className="dropdown">
                 <summary className="btn btn-xs rounded btn-ghost m-1 btn-outline btn-secondary text-accent">
                   <span className="text-base-content">{limit}</span>
