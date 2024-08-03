@@ -16,7 +16,7 @@ export function Section({
 }) {
   return (
     <div
-      className={`flex flex-content justify-center my-0 ${padding ?? "py-8 sm:py-10"} w-full mx-0 ${backgroundColor}`}
+      className={`flex flex-content justify-center my-0 ${padding ?? "py-8 sm:py-10"} w-full mx-0 ${backgroundColor} fade-in-animation`}
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
