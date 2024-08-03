@@ -16,7 +16,7 @@ import {
   Leaderboard as LeaderboardType,
   LeaderboardEntry,
 } from "@/app/api";
-import {Loader} from "@/app/components/Loader";
+import { Loader } from "@/app/components/Loader";
 
 function row(
   rank: number,
@@ -127,7 +127,9 @@ export default function Leaderboard() {
 
       <Section>
         <Loader isLoading={isLoading} />
-        <div className={`grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 opacity-0 ${!isLoading ? "fade-in" : ""}`}>
+        <div
+          className={`grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 opacity-0 ${!isLoading ? "fade-in" : ""}`}
+        >
           <Metric
             title="Total Blocks"
             value={Number(leaderboard.totalBlocks).toLocaleString()}
