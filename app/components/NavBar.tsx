@@ -13,7 +13,7 @@ export const NavBar = () => {
         />
       </a>
 
-      <Link className="ml-auto" href="https://xenblocks.io/leaderboard">
+      <Link className="ml-auto" href="/leaderboard">
         <button className="btn btn-ghost btn-neutral hover:bg-base-100 hover:text-accent btn-mono btn-xs sm:btn-lg">
           <IoTrophy></IoTrophy>
           LEADERBOARD
