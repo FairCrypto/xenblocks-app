@@ -15,9 +15,14 @@ export interface Leaderboard {
   miners: LeaderboardEntry[];
 }
 
-export async function getLeaderboard(): Promise<Leaderboard> {
+export async function getLeaderboard(page: number, limit: number): Promise<Leaderboard> {
+  const prevPage = page - 1;
+  if (prevPage < 0) {
+    throw new Error("Invalid page number");
+  }
+  const offset = prevPage * limit;
   const res = await fetch(
-    process.env.NEXT_PUBLIC_API_ENDPOINT + "/leaderboard",
+    process.env.NEXT_PUBLIC_API_ENDPOINT + `/leaderboard?limit=${limit}&offset=${offset}`,
     {
       headers: {
         Accept: "application/json",

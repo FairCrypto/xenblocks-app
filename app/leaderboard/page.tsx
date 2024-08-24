@@ -1,22 +1,20 @@
 "use client";
 
-import { NavBar } from "@/app/components/NavBar";
+import {NavBar} from "@/app/components/NavBar";
 import "react-medium-image-zoom/dist/styles.css";
 import Footer from "@/app/components/Footer";
-import React, { useEffect } from "react";
-import { Section } from "@/app/components/Section";
-import { CiSearch } from "react-icons/ci";
-import { Metric } from "@/app/components/Metric";
+import React, {useEffect} from "react";
+import {Section} from "@/app/components/Section";
+import {CiSearch} from "react-icons/ci";
+import {Metric} from "@/app/components/Metric";
 import Link from "next/link";
 // import { FaSquare } from "react-icons/fa";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { RxDoubleArrowRight, RxDoubleArrowLeft } from "react-icons/rx";
-import {
-  getLeaderboard,
-  Leaderboard as LeaderboardType,
-  LeaderboardEntry,
-} from "@/app/api";
-import { Loader } from "@/app/components/Loader";
+import {MdKeyboardArrowDown} from "react-icons/md";
+import {RxDoubleArrowLeft, RxDoubleArrowRight} from "react-icons/rx";
+import {getLeaderboard, Leaderboard as LeaderboardType, LeaderboardEntry,} from "@/app/api";
+import {Loader} from "@/app/components/Loader";
+import {useLeaderboardPage} from "@/app/hooks/LeaderBoardPageHook";
+import {useLeaderboardLimit} from "@/app/hooks/LeaderBoardLimitHook";
 
 function row(
   rank: number,
@@ -87,16 +85,56 @@ function SearchBar(isLoading: boolean) {
 }
 
 export default function Leaderboard() {
-  const [limit, setLimit] = React.useState(100);
   const [leaderboard, setLeaderboard]: [LeaderboardType, any] = React.useState(
     {} as LeaderboardType,
   );
   const [isLoading, setIsLoading] = React.useState(false);
+  const [page, setPage] = useLeaderboardPage();
+  const [limit, setLimit] = useLeaderboardLimit();
+
+  const highPage = () => {
+    if (leaderboard.totalMiners === 0 || limit < 1) {
+      return 1;
+    }
+
+    return Math.ceil(leaderboard.totalMiners / limit);
+  }
+
+  const paginationPages = () => {
+    const highPageValue = highPage();
+    const getPage = (page: number) => (page < 1 || page > highPageValue ? -1 : page);
+
+    const pages = {
+      prevPrev: getPage(page - 2),
+      prev: getPage(page - 1),
+      current: getPage(page),
+      next: getPage(page + 1),
+      nextNext: getPage(page + 2),
+    };
+
+    console.log(pages);
+    return pages;
+  }
+
+  const renderPageButton = (pageNumber: number) => {
+    return pageNumber > -1 ? (
+      <button
+        onClick={() => {
+          if (pageNumber > 0 && pageNumber <= highPage()) {
+            setPage(pageNumber);
+          }
+        }}
+        className="join-item btn btn-ghost btn-xs"
+      >
+        {pageNumber}
+      </button>
+    ) : null;
+  };
 
   useEffect(() => {
     setIsLoading(true);
     const fetchLeaderboard = () => {
-      getLeaderboard().then((data) => {
+      getLeaderboard(page, limit).then((data) => {
         setLeaderboard(data);
         setIsLoading(false);
       });
@@ -105,7 +143,7 @@ export default function Leaderboard() {
     fetchLeaderboard();
     const intervalId = setInterval(fetchLeaderboard, 60000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [page, limit]);
 
   return (
     <main className="flex flex-col mx-0">
@@ -192,28 +230,61 @@ export default function Leaderboard() {
                 </summary>
                 <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2">
                   <li>
-                    <a>100</a>
+                    <a
+                      onClick={() => {
+                        setLimit(25);
+                      }}
+                    >25</a>
                   </li>
                   <li>
-                    <a>500</a>
+                    <a
+                      onClick={() => {
+                        setLimit(100);
+                      }}
+                    >100</a>
                   </li>
                   <li>
-                    <a>1000</a>
+                    <a
+                      onClick={() => {
+                        setLimit(500);
+                      }}
+                    >500</a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        setLimit(1000);
+                      }}
+                    >1000</a>
                   </li>
                 </ul>
               </details>
             </div>
           </div>
+
           <div className="join">
-            <button className="join-item btn btn-ghost btn-xs">
+            <button
+              onClick={() => {
+                if (page > 1) setPage(page - 1);
+              }}
+              className="join-item btn btn-ghost btn-xs">
               <RxDoubleArrowLeft />
             </button>
-            <button className="join-item btn btn-ghost btn-xs">1</button>
-            <button className="join-item btn btn-ghost btn-xs">2</button>
-            <button className="join-item btn btn-disabled btn-xs">...</button>
-            <button className="join-item btn btn-ghost btn-xs">99</button>
-            <button className="join-item btn btn-ghost btn-xs">100</button>
-            <button className="join-item btn btn-ghost btn-xs">
+
+
+            {renderPageButton(paginationPages().prevPrev)}
+            {renderPageButton(paginationPages().prev)}
+            <button className="join-item btn btn-disabled btn-xs">{paginationPages().current}</button>
+            {renderPageButton(paginationPages().next)}
+            {renderPageButton(paginationPages().nextNext)}
+
+            <button
+              onClick={() => {
+                if (page < highPage()) {
+                  setPage(page + 1);
+                }
+              }}
+              className="join-item btn btn-ghost btn-xs">
               <RxDoubleArrowRight />
             </button>
           </div>
