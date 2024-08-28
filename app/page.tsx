@@ -14,7 +14,7 @@ export default function Home() {
 
       <div className="hero py-8 mt-0 mb-4 sm:py-8 sm:my-8 bg-base-100">
         <div className="hero-content grid grid-cols-1 md:grid-cols-12">
-          <div className="md:col-span-7">
+          <div className="md:col-span-7 z-10">
             <div className="mx-2 sm:mx-8">
               <h1 className="text-[1.4rem] sm:text-2xl lg:text-3xl xl:text-[2.8rem] font-mono text-accent mb-10 md:mb-12">
                 <div className="mb-2 lg:mb-4 xl:mb-6">PROOF-OF-WORK MINING</div>

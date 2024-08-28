@@ -38,6 +38,7 @@ function row(
         handleClick(account);
       }}
       className="cursor-pointer hover:bg-primary hover:text-primary-content"
+      key={rank}
     >
       {/*<th>*/}
       {/*  <FaSquare className={color} />*/}
