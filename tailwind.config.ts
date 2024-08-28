@@ -113,7 +113,7 @@ const config: Config = {
             "fontFamily": "ProtoMono",
           },
           ".alert": {
-            "border": "2px dashed",
+            "border": "2px",
             "fontFamily": "ProtoMono",
           },
           ".btn-lg": {

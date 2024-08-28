@@ -36,3 +36,25 @@ export async function getLeaderboard(page: number, limit: number): Promise<Leade
 
   return res.json();
 }
+
+
+export async function fetchLeaderboardEntry(account: string): Promise<LeaderboardEntry> {
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_API_ENDPOINT + `/leaderboard/${account}`,
+    {
+      headers: {
+        Accept: "application/json",
+      },
+    },
+  );
+
+  if (!res.ok) {
+    if (res.status === 404) {
+      throw new Error("Account not found: " + account);
+    }
+
+    throw new Error("Error fetching leaderboard data");
+  }
+
+  return res.json();
+}

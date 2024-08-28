@@ -15,18 +15,24 @@ import {getLeaderboard, Leaderboard as LeaderboardType, LeaderboardEntry,} from 
 import {Loader} from "@/app/components/Loader";
 import {useLeaderboardPage} from "@/app/hooks/LeaderBoardPageHook";
 import {useLeaderboardLimit} from "@/app/hooks/LeaderBoardLimitHook";
+import {SearchBar} from "@/app/components/Searchbar";
+import {useRouter} from "next/navigation";
 
-function row(
+export function row(
   rank: number,
   account: string,
   blocks: number,
   superBlocks: number,
   hashRate: number,
+  handleClick: (account: string) => void
 ) {
   let status = hashRate > 0;
   let color = status ? "text-primary" : "text-error";
   return (
-    <tr>
+    <tr onClick={() => {
+      handleClick(account);
+    }}
+        className='cursor-pointer hover:bg-primary hover:text-primary-content'>
       {/*<th>*/}
       {/*  <FaSquare className={color} />*/}
       {/*</th>*/}
@@ -52,39 +58,8 @@ function headerRow() {
   );
 }
 
-function SearchBar(isLoading: boolean) {
-  const [searchInput, setSearchInput] = React.useState("");
-  const changeSearchBox = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
-  };
-
-  const handleSearchClick = (e: any) => {
-    e.preventDefault();
-    console.log("Search Clicked");
-  };
-
-  return (
-    <form
-      onSubmit={handleSearchClick}
-      className={`flex justify-end mx-2 sm:mx-0 opacity-0 ${!isLoading ? "fade-in" : ""}`}
-    >
-      <label className="input input-bordered input-sm flex items-center gap-2 my-3 ">
-        <input
-          type="text"
-          className="grow"
-          placeholder="Search"
-          value={searchInput}
-          onChange={changeSearchBox}
-        />
-        <button className="" onClick={handleSearchClick}>
-          <CiSearch />
-        </button>
-      </label>
-    </form>
-  );
-}
-
 export default function Leaderboard() {
+  const { push } = useRouter();
   const [leaderboard, setLeaderboard]: [LeaderboardType, any] = React.useState(
     {} as LeaderboardType,
   );
@@ -112,7 +87,6 @@ export default function Leaderboard() {
       nextNext: getPage(page + 2),
     };
 
-    console.log(pages);
     return pages;
   }
 
@@ -194,7 +168,7 @@ export default function Leaderboard() {
       <Section>
         <div className="card-title">
           <div className="mr-auto text-accent text-base">Miners</div>
-          {/*{SearchBar(isLoading)}*/}
+          <SearchBar isLoading={isLoading}  />
         </div>
 
         <div className="overflow-x-auto overflow-y-hidden">
@@ -212,6 +186,9 @@ export default function Leaderboard() {
                     entry.blocks,
                     entry.superBlocks,
                     entry.hashRate,
+                    (account: string) => {
+                      push(`/leaderboard/${account}`);
+                    },
                   ),
               )}
             </tbody>
