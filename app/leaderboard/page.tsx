@@ -1,22 +1,26 @@
 "use client";
 
-import {NavBar} from "@/app/components/NavBar";
+import { NavBar } from "@/app/components/NavBar";
 import "react-medium-image-zoom/dist/styles.css";
 import Footer from "@/app/components/Footer";
-import React, {useEffect} from "react";
-import {Section} from "@/app/components/Section";
-import {CiSearch} from "react-icons/ci";
-import {Metric} from "@/app/components/Metric";
+import React, { useEffect } from "react";
+import { Section } from "@/app/components/Section";
+import { CiSearch } from "react-icons/ci";
+import { Metric } from "@/app/components/Metric";
 import Link from "next/link";
 // import { FaSquare } from "react-icons/fa";
-import {MdKeyboardArrowDown} from "react-icons/md";
-import {RxDoubleArrowLeft, RxDoubleArrowRight} from "react-icons/rx";
-import {getLeaderboard, Leaderboard as LeaderboardType, LeaderboardEntry,} from "@/app/api";
-import {Loader} from "@/app/components/Loader";
-import {useLeaderboardPage} from "@/app/hooks/LeaderBoardPageHook";
-import {useLeaderboardLimit} from "@/app/hooks/LeaderBoardLimitHook";
-import {SearchBar} from "@/app/components/Searchbar";
-import {useRouter} from "next/navigation";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { RxDoubleArrowLeft, RxDoubleArrowRight } from "react-icons/rx";
+import {
+  getLeaderboard,
+  Leaderboard as LeaderboardType,
+  LeaderboardEntry,
+} from "@/app/api";
+import { Loader } from "@/app/components/Loader";
+import { useLeaderboardPage } from "@/app/hooks/LeaderBoardPageHook";
+import { useLeaderboardLimit } from "@/app/hooks/LeaderBoardLimitHook";
+import { SearchBar } from "@/app/components/Searchbar";
+import { useRouter } from "next/navigation";
 
 function row(
   rank: number,
@@ -24,15 +28,17 @@ function row(
   blocks: number,
   superBlocks: number,
   hashRate: number,
-  handleClick: (account: string) => void
+  handleClick: (account: string) => void,
 ) {
   let status = hashRate > 0;
   let color = status ? "text-primary" : "text-error";
   return (
-    <tr onClick={() => {
-      handleClick(account);
-    }}
-        className='cursor-pointer hover:bg-primary hover:text-primary-content'>
+    <tr
+      onClick={() => {
+        handleClick(account);
+      }}
+      className="cursor-pointer hover:bg-primary hover:text-primary-content"
+    >
       {/*<th>*/}
       {/*  <FaSquare className={color} />*/}
       {/*</th>*/}
@@ -73,11 +79,12 @@ export default function Leaderboard() {
     }
 
     return Math.ceil(leaderboard.totalMiners / limit);
-  }
+  };
 
   const paginationPages = () => {
     const highPageValue = highPage();
-    const getPage = (page: number) => (page < 1 || page > highPageValue ? -1 : page);
+    const getPage = (page: number) =>
+      page < 1 || page > highPageValue ? -1 : page;
 
     const pages = {
       prevPrev: getPage(page - 2),
@@ -88,7 +95,7 @@ export default function Leaderboard() {
     };
 
     return pages;
-  }
+  };
 
   const renderPageButton = (pageNumber: number) => {
     return pageNumber > -1 ? (
@@ -168,7 +175,7 @@ export default function Leaderboard() {
       <Section>
         <div className="card-title">
           <div className="mr-auto text-accent text-base">Miners</div>
-          <SearchBar isLoading={isLoading}  />
+          <SearchBar isLoading={isLoading} />
         </div>
 
         <div className="overflow-x-auto overflow-y-hidden">
@@ -211,28 +218,36 @@ export default function Leaderboard() {
                       onClick={() => {
                         setLimit(25);
                       }}
-                    >25</a>
+                    >
+                      25
+                    </a>
                   </li>
                   <li>
                     <a
                       onClick={() => {
                         setLimit(100);
                       }}
-                    >100</a>
+                    >
+                      100
+                    </a>
                   </li>
                   <li>
                     <a
                       onClick={() => {
                         setLimit(500);
                       }}
-                    >500</a>
+                    >
+                      500
+                    </a>
                   </li>
                   <li>
                     <a
                       onClick={() => {
                         setLimit(1000);
                       }}
-                    >1000</a>
+                    >
+                      1000
+                    </a>
                   </li>
                 </ul>
               </details>
@@ -244,14 +259,16 @@ export default function Leaderboard() {
               onClick={() => {
                 if (page > 1) setPage(page - 1);
               }}
-              className="join-item btn btn-ghost btn-xs">
+              className="join-item btn btn-ghost btn-xs"
+            >
               <RxDoubleArrowLeft />
             </button>
 
-
             {renderPageButton(paginationPages().prevPrev)}
             {renderPageButton(paginationPages().prev)}
-            <button className="join-item btn btn-disabled btn-xs">{paginationPages().current}</button>
+            <button className="join-item btn btn-disabled btn-xs">
+              {paginationPages().current}
+            </button>
             {renderPageButton(paginationPages().next)}
             {renderPageButton(paginationPages().nextNext)}
 
@@ -261,7 +278,8 @@ export default function Leaderboard() {
                   setPage(page + 1);
                 }
               }}
-              className="join-item btn btn-ghost btn-xs">
+              className="join-item btn btn-ghost btn-xs"
+            >
               <RxDoubleArrowRight />
             </button>
           </div>

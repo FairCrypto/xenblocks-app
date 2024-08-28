@@ -3,16 +3,26 @@ import "./globals.css";
 import { ThemeProvider } from "@/app/context/ThemeContext";
 import ClientThemeWrapper from "@/app/context/ClientThemeWrapper";
 import React from "react";
-import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
-  title: "XENBLOCKS",
-  description: "PROOF-OF-WORK MINING ACCESSIBLE TO EVERYONE",
-  // add meta tags here
-  icons: [
-    // { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    // { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-  ],
+  openGraph: {
+    title: "PROOF-OF-WORK MINING",
+    description:
+      "XENBLOCKS SERVE AS THE PROOF-OF-WORK (POW) COMPONENT OF THE X1 BLOCKCHAIN",
+    url: "https://explorer.xenblocks.io",
+    type: "website",
+    images: [
+      {
+        url: "https://xenblocks.ai/xenblocks-logo.png",
+        width: 800,
+        height: 156,
+        alt: "Xenblocks Logo",
+      },
+    ],
+  },
+  twitter: {
+    creator: "@XEN_Crypto",
+  },
 };
 
 export default function RootLayout({

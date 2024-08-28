@@ -1,6 +1,6 @@
 import React from "react";
-import {CiSearch} from "react-icons/ci";
-import {useRouter} from "next/navigation";
+import { CiSearch } from "react-icons/ci";
+import { useRouter } from "next/navigation";
 
 interface SearchBarProps {
   isLoading: boolean;
@@ -25,7 +25,7 @@ export function SearchBar({ isLoading }: SearchBarProps) {
   return (
     <form
       onSubmit={handleSearchClick}
-      className={`flex justify-end mx-2 sm:mx-0 opacity-0 ${!isLoading ? "fade-in" : ""}`}
+      className={`sm:mx-0 opacity-0 ${!isLoading ? "fade-in" : ""}`}
     >
       <label className="input input-bordered py-0 input-sm flex items-center gap-2 my-3 ">
         <input

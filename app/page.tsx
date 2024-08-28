@@ -1,31 +1,11 @@
+"use client";
+
 import { NavBar } from "@/app/components/NavBar";
 import Link from "next/link";
 import "react-medium-image-zoom/dist/styles.css";
 import Footer from "@/app/components/Footer";
 import { SiGitbook } from "react-icons/si";
-import { Metadata } from "next";
 import { Section } from "@/app/components/Section";
-
-export const metadata: Metadata = {
-  openGraph: {
-    title: "PROOF-OF-WORK MINING",
-    description:
-      "XENBLOCKS SERVE AS THE PROOF-OF-WORK (POW) COMPONENT OF THE X1 BLOCKCHAIN",
-    url: "https://xenblocks.ai",
-    type: "website",
-    images: [
-      {
-        url: "https://xenblocks.ai/xenblocks-logo.png",
-        width: 800,
-        height: 156,
-        alt: "Xenblocks Logo",
-      },
-    ],
-  },
-  twitter: {
-    creator: "@XEN_Crypto",
-  },
-};
 
 export default function Home() {
   return (
