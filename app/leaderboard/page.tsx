@@ -207,7 +207,7 @@ export default function Leaderboard() {
               {leaderboard.miners?.map(
                 (entry: LeaderboardEntry, index: number) =>
                   row(
-                    index + 1,
+                    entry.rank,
                     entry.account,
                     entry.blocks,
                     entry.superBlocks,
