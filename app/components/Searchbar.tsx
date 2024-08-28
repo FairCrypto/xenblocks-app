@@ -30,7 +30,7 @@ export function SearchBar({ isLoading }: SearchBarProps) {
       <label className="input input-bordered py-0 input-sm flex items-center gap-2 my-3 ">
         <input
           type="text"
-          className="grow"
+          className="grow sm:w-[250px] lg:focus:w-[400px]"
           placeholder="Search"
           value={searchInput}
           onChange={changeSearchBox}
