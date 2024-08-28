@@ -18,7 +18,7 @@ import {useLeaderboardLimit} from "@/app/hooks/LeaderBoardLimitHook";
 import {SearchBar} from "@/app/components/Searchbar";
 import {useRouter} from "next/navigation";
 
-export function row(
+function row(
   rank: number,
   account: string,
   blocks: number,

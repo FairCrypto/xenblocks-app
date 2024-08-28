@@ -3,7 +3,6 @@
 import { NavBar } from "@/app/components/NavBar";
 import React, {useEffect} from "react";
 import {SearchBar} from "@/app/components/Searchbar";
-import {row} from "@/app/leaderboard/page";
 import {fetchLeaderboardEntry, LeaderboardEntry} from "@/app/api";
 import {Metric} from "@/app/components/Metric";
 
