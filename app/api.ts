@@ -15,6 +15,11 @@ export interface Leaderboard {
   miners: LeaderboardEntry[];
 }
 
+export interface AddressConnect {
+  ethereumAddress: string;
+  x1Address: string;
+}
+
 export async function getLeaderboard(
   page: number,
   limit: number,
@@ -59,6 +64,28 @@ export async function fetchLeaderboardEntry(
     }
 
     throw new Error("Error fetching leaderboard data");
+  }
+
+  return res.json();
+}
+
+
+export async function fetchX1Address(account: string): Promise<AddressConnect> {
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_JACKS_ADDRESS_CONNECT_ENDPOINT + `/reg-ledger-api/${account}`,
+    {
+      headers: {
+        Accept: "application/json",
+      },
+    },
+  )
+
+  if (!res.ok) {
+    if (res.status === 404) {
+      return { "ethereumAddress": "", "x1Address": "" };
+    }
+
+    throw new Error("Error fetching eth address");
   }
 
   return res.json();

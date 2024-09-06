@@ -3,7 +3,7 @@
 import { NavBar } from "@/app/components/NavBar";
 import React, { useEffect } from "react";
 import { SearchBar } from "@/app/components/Searchbar";
-import { fetchLeaderboardEntry, LeaderboardEntry } from "@/app/api";
+import {fetchLeaderboardEntry, fetchX1Address, LeaderboardEntry} from "@/app/api";
 import { Metric } from "@/app/components/Metric";
 import Footer from "@/app/components/Footer";
 
@@ -20,6 +20,7 @@ export default function LeaderboardSlug({
     hashRate: 0,
   } as LeaderboardEntry);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [x1Address, setX1Address] = React.useState("");
 
   useEffect(() => {
     fetchLeaderboardEntry(params.slug)
@@ -30,6 +31,10 @@ export default function LeaderboardSlug({
       .catch((err) => {
         setError(err.message);
       });
+
+    fetchX1Address(params.slug).then((data) => {
+      setX1Address(data.x1Address);
+    });
   }, [params.slug]);
 
   return (
@@ -39,13 +44,13 @@ export default function LeaderboardSlug({
         <div className="card mx-2 sm:mx-8 lg:mx-2 w-full max-w-screen-xl">
           <div className="card-body p-4 sm:p-6">
             <div className="sm:hidden mb-3">
-              <SearchBar isLoading={isLoading} />
+              <SearchBar isLoading={isLoading}/>
             </div>
 
             <div className="card-title">
               <h1 className="text-2xl mr-auto">Xenblocks Miner</h1>
               <div className="hidden sm:inline">
-                <SearchBar isLoading={isLoading} />
+                <SearchBar isLoading={isLoading}/>
               </div>
             </div>
 
@@ -69,9 +74,33 @@ export default function LeaderboardSlug({
             )}
 
             <div>
-              <p className="my-3 text-xs sm:text-base">
-                {leaderboardEntry.account}
-              </p>
+              <div
+                className={`grid grid-cols-1 ${x1Address && "lg:grid-cols-2"} gap-2 sm:gap-4 opacity-0 mb-2 sm:mb-4 ${!isLoading ? "fade-in" : ""}`}
+              >
+                <div className={`outline outline-secondary col-span-1`}>
+                  <div className="stat p-3">
+                    <div className="stat-title text-accent text-xs md:text-sm mb-3">
+                      Ethereum Address
+                    </div>
+                    <div className="stat-value text-accent text-sm md:text-lg font-mono truncate">
+                      {leaderboardEntry.account}
+                    </div>
+                  </div>
+                </div>
+
+                { x1Address ? (
+                <div className={`outline outline-secondary col-span-1`}>
+                  <div className="stat p-3">
+                    <div className="stat-title text-accent text-xs md:text-sm mb-3">
+                      X1 Address
+                    </div>
+                    <div className="stat-value text-accent text-sm md:text-lg font-mono truncate">
+                      {x1Address}
+                    </div>
+                  </div>
+                </div>
+                ) : null }
+              </div>
 
               <div
                 className={`grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 opacity-0 ${!isLoading ? "fade-in" : ""}`}
@@ -96,7 +125,7 @@ export default function LeaderboardSlug({
 
       <section className="flex-grow"></section>
 
-      <Footer isLoading={isLoading} />
+      <Footer isLoading={isLoading}/>
     </main>
   );
 }

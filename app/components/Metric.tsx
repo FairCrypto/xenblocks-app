@@ -2,11 +2,12 @@ export interface MetricProps {
   title: string;
   value: string;
   desc?: string;
+  colspan?: number;
 }
 
 export function Metric(props: MetricProps) {
   return (
-    <div className="outline outline-secondary col-span-1">
+    <div className={`outline outline-secondary col-span-${props.colspan ?? 1}`}>
       <div className="stat p-3">
         <div className="stat-title text-accent text-xs md:text-sm mb-3">
           {props.title}
