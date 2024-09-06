@@ -44,7 +44,7 @@ function row(
       {/*  <FaSquare className={color} />*/}
       {/*</th>*/}
       <td>{rank.toLocaleString()}</td>
-      <td className="truncate">{account}</td>
+      <td className="font-mono truncate">{account}</td>
       <td align="right">{blocks.toLocaleString()}</td>
       <td align="right">{superBlocks.toLocaleString()}</td>
       {/*<td>{hashRate.toLocaleString()}</td>*/}
