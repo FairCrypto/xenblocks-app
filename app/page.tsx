@@ -29,7 +29,7 @@ export default function Home() {
                   START MINING
                 </button>
               </Link>
-              <a href="https://info.xenpedia.com/xenblocks/RQEGw43Y8s86czyWkYpj">
+              <a href="https://docs.xenblocks.io">
                 <button className="ml-2 btn btn-sm sm:btn-md lg:btn-lg btn-primary btn-outline font-thin text-lg">
                   GITBOOK
                   <SiGitbook />

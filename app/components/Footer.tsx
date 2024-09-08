@@ -18,14 +18,14 @@ export default function Footer({ isLoading = false }: { isLoading?: boolean }) {
             </button>
           </Link>
 
-          <Link className="sm:mx-3" href="https://xenblocks.io/leaderboard">
+          <Link className="sm:mx-3" href="https://github.com/jacklevin74/xenminer">
             <button className="btn btn-ghost btn-accent btn-mono btm-nav-sm sm:btn-lg">
               <SiGithub />
               GITHUB
             </button>
           </Link>
 
-          <Link className="sm:mx-3" href="https://xenblocks.io/leaderboard">
+          <Link className="sm:mx-3" href="https://docs.xenblocks.io">
             <button className="btn btn-ghost btn-accent btn-mono btm-nav-sm sm:btn-lg">
               <SiGitbook />
               GITBOOK
