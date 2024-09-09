@@ -24,7 +24,7 @@ export default function Home() {
                 XenBLOCKs serve as the Proof-of-Work (PoW) component of the X1
                 blockchain
               </p>
-              <Link href="./leaderboard">
+              <Link href="https://docs.xenblocks.io/mining/how-to-mine-xenblocks">
                 <button className="btn btn-primary btn-sm sm:btn-md lg:btn-lg hover:bg-base-100 hover:text-primary font-thin text-lg">
                   START MINING
                 </button>
