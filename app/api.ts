@@ -4,6 +4,9 @@ export interface LeaderboardEntry {
   hashRate: number;
   blocks: number;
   superBlocks: number;
+  xblk: number;
+  xnm: number;
+  xuni: number;
 }
 
 export interface Leaderboard {

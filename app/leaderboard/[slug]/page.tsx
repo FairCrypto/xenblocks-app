@@ -37,6 +37,10 @@ export default function LeaderboardSlug({
     });
   }, [params.slug]);
 
+  const xnm = leaderboardEntry.xnm ? Math.round(leaderboardEntry.xnm * Math.pow(10, -18)).toLocaleString() : "0";
+  const xblk = leaderboardEntry.xblk ? Math.round(leaderboardEntry.xblk * Math.pow(10, -18)).toLocaleString() : "0";
+  const xuni = leaderboardEntry.xuni ? Math.round(leaderboardEntry.xuni * Math.pow(10, -18)).toLocaleString() : "0";
+
   return (
     <main className="min-h-screen flex flex-col justify-between mx-0">
       <NavBar />
@@ -114,8 +118,16 @@ export default function LeaderboardSlug({
                   value={leaderboardEntry.blocks.toLocaleString()}
                 />
                 <Metric
-                  title="Super Blocks"
-                  value={leaderboardEntry.superBlocks.toLocaleString()}
+                  title="XNM"
+                  value={xnm.toLocaleString()}
+                />
+                <Metric
+                  title="XBLK"
+                  value={xblk.toLocaleString()}
+                />
+                <Metric
+                  title="XUNI"
+                  value={xuni.toLocaleString()}
                 />
               </div>
             </div>

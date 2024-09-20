@@ -23,30 +23,35 @@ import { SearchBar } from "@/app/components/Searchbar";
 import { useRouter } from "next/navigation";
 
 function row(
-  rank: number,
-  account: string,
-  blocks: number,
-  superBlocks: number,
-  hashRate: number,
+  leaderboardEntry: LeaderboardEntry,
   handleClick: (account: string) => void,
 ) {
-  let status = hashRate > 0;
+  let status = leaderboardEntry.hashRate > 0;
   let color = status ? "text-primary" : "text-error";
+
+  const xnm = leaderboardEntry.xnm ? Math.round(leaderboardEntry.xnm * Math.pow(10, -18)).toLocaleString() : "0";
+  const xblk = leaderboardEntry.xblk ? Math.round(leaderboardEntry.xblk * Math.pow(10, -18)).toLocaleString() : "0";
+  const xuni = leaderboardEntry.xuni ? Math.round(leaderboardEntry.xuni * Math.pow(10, -18)).toLocaleString() : "0";
+
   return (
     <tr
       onClick={() => {
-        handleClick(account);
+        handleClick(leaderboardEntry.account);
       }}
       className="cursor-pointer hover:bg-primary hover:text-primary-content"
-      key={rank}
+      key={leaderboardEntry.rank}
     >
       {/*<th>*/}
       {/*  <FaSquare className={color} />*/}
       {/*</th>*/}
-      <td>{rank.toLocaleString()}</td>
-      <td className="font-mono truncate">{account}</td>
-      <td align="right">{blocks.toLocaleString()}</td>
-      <td align="right">{superBlocks.toLocaleString()}</td>
+      <td>{leaderboardEntry.rank.toLocaleString()}</td>
+      <td className="font-mono truncate">{leaderboardEntry.account}</td>
+      <td align="right">{leaderboardEntry.blocks.toLocaleString()}</td>
+      <td align="right">{xnm.toLocaleString()}</td>
+      <td className="hidden sm:table-cell"
+          align="right">{xblk.toLocaleString()}</td>
+      {/*<td className="hidden md:table-cell"*/}
+      {/*    align="right">{xuni.toLocaleString()}</td>*/}
       {/*<td>{hashRate.toLocaleString()}</td>*/}
     </tr>
   );
@@ -59,14 +64,16 @@ function headerRow() {
       <th className="w-10 lg:table-cell">RANK</th>
       <th>ACCOUNT</th>
       <th align="right">BLOCKS</th>
-      <th align="right">SUPER BLOCKS</th>
+      <th align="right">XNM</th>
+      <th className="hidden sm:table-cell" align="right">XBLK</th>
+      {/*<th className="hidden md:table-cell" align="right">XUNI</th>*/}
       {/*<th>HASH RATE</th>*/}
     </tr>
   );
 }
 
 export default function Leaderboard() {
-  const { push } = useRouter();
+  const {push} = useRouter();
   const [leaderboard, setLeaderboard]: [LeaderboardType, any] = React.useState(
     {} as LeaderboardType,
   );
@@ -182,18 +189,13 @@ export default function Leaderboard() {
         <div className="overflow-x-auto overflow-y-hidden">
           <Loader isLoading={isLoading} />
           <table
-            className={`table table-xs sm:table-md table-fixed md:table-auto w-full opacity-0 ${!isLoading ? "fade-in" : ""}`}
+            className={`table table-xs sm:table-md table-fixed lg:table-auto w-full opacity-0 ${!isLoading ? "fade-in" : ""}`}
           >
             <thead>{headerRow()}</thead>
             <tbody>
               {leaderboard.miners?.map(
                 (entry: LeaderboardEntry, index: number) =>
-                  row(
-                    entry.rank,
-                    entry.account,
-                    entry.blocks,
-                    entry.superBlocks,
-                    entry.hashRate,
+                  row(entry,
                     (account: string) => {
                       push(`/leaderboard/${account}`);
                     },
