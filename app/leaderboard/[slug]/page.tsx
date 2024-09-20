@@ -125,10 +125,10 @@ export default function LeaderboardSlug({
                   title="XBLK"
                   value={xblk.toLocaleString()}
                 />
-                <Metric
-                  title="XUNI"
-                  value={xuni.toLocaleString()}
-                />
+                {/*<Metric*/}
+                {/*  title="XUNI"*/}
+                {/*  value={xuni.toLocaleString()}*/}
+                {/*/>*/}
               </div>
             </div>
           </div>
