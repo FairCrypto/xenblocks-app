@@ -146,7 +146,7 @@ export default function Leaderboard() {
             </div>
             <article className="prose">
               XENBLOCKs is a Proof of Work element of{" "}
-              <Link href="https://x1blockchain.net/"> X1 Blockchain™</Link>
+              <Link href="https://x1.xyz/"> X1 Blockchain™</Link>
             </article>
           </div>
         </div>
