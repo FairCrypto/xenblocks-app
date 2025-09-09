@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PROOF-OF-WORK MINING",
     description:
-      "XENBLOCKS SERVE AS THE PROOF-OF-WORK (POW) COMPONENT OF THE X1 BLOCKCHAIN",
+      "XENBLOCKS SERVE AS A PROOF-OF-WORK (POW) TOKEN ON THE X1 BLOCKCHAIN",
     url: "https://explorer.xenblocks.io",
     type: "website",
     images: [

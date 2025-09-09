@@ -21,7 +21,7 @@ export default function Home() {
                 <div>ACCESSIBLE TO EVERYONE</div>
               </h1>
               <p className="mb-12 max-w-lg uppercase leading-loose md:leading-loose lg:leading-loose text-justify text-xs sm:text-left lg:text-lg">
-                XenBLOCKs serve as the Proof-of-Work (PoW) component of the X1
+                XenBLOCKs serve as a Proof-of-Work (PoW) token on the X1
                 blockchain
               </p>
               <Link href="https://docs.xenblocks.io/mining/how-to-mine-xenblocks">
