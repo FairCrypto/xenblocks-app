@@ -106,32 +106,6 @@ export default function Home() {
             <img src="./xeniumchart.svg"></img>
           </div>
         </article>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-28 lg:px-20 mt-10">
-          <article>
-            <h3 className="mb-6 lg:text-2xl text-accent">UTILITY</h3>
-            <p className="mb-6 text-sm lg:text-base uppercase text-justify leading-loose">
-              By providing XNM rewards to miners for their computational
-              efforts, the protocol ensures sustainability through staking
-              incentives. XNM can be staked to earn XN Yield on the X1
-              blockchain, further reinforcing its utility. Beyond staking, XNM
-              plays a crucial role in decentralized computing and has potential
-              applications in various other domains, enhancing its overall
-              value.
-            </p>
-          </article>
-          <article>
-            <h3 className="mb-6 lg:text-2xl text-accent">POW-POS</h3>
-            <p className="mb-6 text-sm lg:text-base uppercase text-justify leading-loose">
-              Consequently, Xenblocks functions as a hybrid system combining
-              Proof of Stake (PoS) and Proof of Work (PoW). Its PoW component
-              mirrors Bitcoin&apos;s mining process, involving the solving of
-              cryptographic challenges and discovering specific hashes. The
-              inclusion of staking mechanisms helps alleviate selling pressure
-              from miners.
-            </p>
-          </article>
-        </div>
       </Section>
 
       <div className={`my-0 w-full bg-base-200`}>
