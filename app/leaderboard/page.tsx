@@ -50,8 +50,8 @@ function row(
       <td align="right">{xnm.toLocaleString()}</td>
       <td className="hidden sm:table-cell"
           align="right">{xblk.toLocaleString()}</td>
-      {/*<td className="hidden md:table-cell"*/}
-      {/*    align="right">{xuni.toLocaleString()}</td>*/}
+      <td className="hidden md:table-cell"
+          align="right">{xuni.toLocaleString()}</td>
       {/*<td>{hashRate.toLocaleString()}</td>*/}
     </tr>
   );
@@ -66,7 +66,7 @@ function headerRow() {
       <th align="right">BLOCKS</th>
       <th align="right">XNM</th>
       <th className="hidden sm:table-cell" align="right">XBLK</th>
-      {/*<th className="hidden md:table-cell" align="right">XUNI</th>*/}
+      <th className="hidden md:table-cell" align="right">XUNI</th>
       {/*<th>HASH RATE</th>*/}
     </tr>
   );
@@ -168,14 +168,24 @@ export default function Leaderboard() {
             desc="Blocks per minute"
           />
           <Metric
-            title="Current Miners"
-            value={Number(leaderboard.totalMiners).toLocaleString()}
-            desc="Amount of Miners"
-          />
-          <Metric
             title="Current Difficulty"
             value={Number(leaderboard.difficulty).toLocaleString()}
             desc="Difficulty"
+          />
+          <Metric
+            title="Total XNM"
+            value={Math.round((leaderboard.totalXnm || 0) / 1e18).toLocaleString()}
+            desc="Total Supply"
+          />
+          <Metric
+            title="Total XBLK"
+            value={Math.round((leaderboard.totalXblk || 0) / 1e18).toLocaleString()}
+            desc="Total Supply"
+          />
+          <Metric
+            title="Total XUNI"
+            value={Math.round((leaderboard.totalXuni || 0) / 1e18).toLocaleString()}
+            desc="Total Supply"
           />
         </div>
       </Section>

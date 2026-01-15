@@ -14,6 +14,9 @@ export interface Leaderboard {
   totalHashRate: number;
   totalMiners: number;
   totalBlocks: number;
+  totalXnm: number;
+  totalXblk: number;
+  totalXuni: number;
   difficulty: number;
   miners: LeaderboardEntry[];
 }
