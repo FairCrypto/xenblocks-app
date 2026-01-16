@@ -1,0 +1,21 @@
+{
+  "name": "Superblock",
+  "symbol": "XBLK",
+  "description": "Superblock (XBLK) is a rare, high-value reward token in the XenBlocks mining ecosystem. Miners earn XBLK when they discover exceptional blocks where the hash contains 50 or more consecutive uppercase letters.",
+  "image": "https://explorer.xenblocks.io/tokens/xblk.png",
+  "attributes": [
+    {
+      "trait_type": "Category",
+      "value": "DeFi"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://explorer.xenblocks.io/tokens/xblk.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image"
+  }
+}

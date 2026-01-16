@@ -1,0 +1,21 @@
+{
+  "name": "Xenium",
+  "symbol": "XNM",
+  "description": "Xenium (XNM) is the primary reward token for the XenBlocks mining ecosystem. Miners earn XNM by solving Argon2ID cryptographic puzzles that produce hashes containing the XEN11 pattern. As the standard mining reward, XNM incentivizes participation in the decentralized proof-of-work network.",
+  "image": "https://explorer.xenblocks.io/tokens/xnm.png",
+  "attributes": [
+    {
+      "trait_type": "Category",
+      "value": "DeFi"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://explorer.xenblocks.io/tokens/xnm.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image"
+  }
+}

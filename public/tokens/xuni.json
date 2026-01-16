@@ -1,0 +1,21 @@
+{
+  "name": "Xuni",
+  "symbol": "XUNI",
+  "description": "Xuni (XUNI) is a time-restricted bonus token in the XenBlocks mining ecosystem. XUNI can only be mined during a 5-minute window at the top of each hour, when hashes matching the XUNI pattern are accepted. This time-gating creates predictable peak mining windows and rewards sustained network participation.",
+  "image": "https://explorer.xenblocks.io/tokens/xuni.png",
+  "attributes": [
+    {
+      "trait_type": "Category",
+      "value": "DeFi"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://explorer.xenblocks.io/tokens/xuni.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image"
+  }
+}
