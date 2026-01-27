@@ -172,7 +172,7 @@ export default function LeaderboardSlug({
                   <h2 className={`text-lg mt-6 mb-2 opacity-0 ${!isLoading ? "fade-in" : ""} flex items-center gap-2`}>
                     X1 Airdrop Status
                     {(isLoadingAirdrop || isLoadingTokenMetadata) && <span className="loading loading-spinner loading-xs"></span>}
-                    {!isLoadingAirdrop && airdropData?.lastUpdated && airdropData.lastUpdated > 0n && (
+                    {!isLoadingAirdrop && airdropData?.lastUpdated !== undefined && airdropData.lastUpdated > 0n && (
                       <span className="text-sm font-normal text-base-content/60">
                         (Last: {formatTimestamp(airdropData.lastUpdated)})
                       </span>
