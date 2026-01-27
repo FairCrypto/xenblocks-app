@@ -6,6 +6,9 @@ import { SearchBar } from "@/app/components/Searchbar";
 import {fetchLeaderboardEntry, fetchX1Address, LeaderboardEntry} from "@/app/api";
 import { Metric } from "@/app/components/Metric";
 import Footer from "@/app/components/Footer";
+import { useAirdropRecord, toTokenAmount, formatTokenAmount, formatTimestamp } from "@/app/hooks/useAirdropRecord";
+import { useTokenMetadata } from "@/app/hooks/useTokenMetadata";
+import { config } from "@/app/lib/solana/config";
 
 export default function LeaderboardSlug({
   params,
@@ -36,6 +39,30 @@ export default function LeaderboardSlug({
       setX1Address(data.x1Address);
     });
   }, [params.slug]);
+
+  // Fetch airdrop record from on-chain
+  const { data: airdropData, isLoading: isLoadingAirdrop } = useAirdropRecord(
+    x1Address || null,
+    leaderboardEntry.account || null
+  );
+
+  // Fetch token metadata for logos
+  const { data: tokenMetadata, isLoading: isLoadingTokenMetadata } = useTokenMetadata();
+
+  // Calculate API amounts (converted to 9 decimals)
+  const apiXnm = toTokenAmount(leaderboardEntry.xnm);
+  const apiXblk = toTokenAmount(leaderboardEntry.xblk);
+  const apiXuni = toTokenAmount(leaderboardEntry.xuni);
+
+  // Get on-chain airdropped amounts
+  const onChainXnm = airdropData?.xnmAirdropped ?? 0n;
+  const onChainXblk = airdropData?.xblkAirdropped ?? 0n;
+  const onChainXuni = airdropData?.xuniAirdropped ?? 0n;
+
+  // Calculate pending deltas (only positive values)
+  const pendingXnm = apiXnm > onChainXnm ? apiXnm - onChainXnm : 0n;
+  const pendingXblk = apiXblk > onChainXblk ? apiXblk - onChainXblk : 0n;
+  const pendingXuni = apiXuni > onChainXuni ? apiXuni - onChainXuni : 0n;
 
   const xnm = leaderboardEntry.xnm ? Math.round(leaderboardEntry.xnm * Math.pow(10, -18)).toLocaleString() : "0";
   const xblk = leaderboardEntry.xblk ? Math.round(leaderboardEntry.xblk * Math.pow(10, -18)).toLocaleString() : "0";
@@ -97,6 +124,14 @@ export default function LeaderboardSlug({
                   <div className="stat p-3">
                     <div className="stat-title text-accent text-xs md:text-sm mb-3">
                       X1 Address
+                      <a
+                        href={`${config.explorerUrl}/address/${x1Address}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-2 text-primary hover:text-primary/80 text-xs"
+                      >
+                        [Explorer]
+                      </a>
                     </div>
                     <div className="stat-value text-accent text-sm md:text-lg font-mono truncate">
                       {x1Address}
@@ -130,6 +165,131 @@ export default function LeaderboardSlug({
                   value={xuni.toLocaleString()}
                 />
               </div>
+
+              {/* Airdrop Section */}
+              {x1Address && (
+                <>
+                  <h2 className={`text-lg mt-6 mb-2 opacity-0 ${!isLoading ? "fade-in" : ""} flex items-center gap-2`}>
+                    X1 Airdrop Status
+                    {(isLoadingAirdrop || isLoadingTokenMetadata) && <span className="loading loading-spinner loading-xs"></span>}
+                    {!isLoadingAirdrop && airdropData?.lastUpdated !== undefined && airdropData.lastUpdated > 0n && (
+                      <span className="text-sm font-normal text-base-content/60">
+                        (Last: {formatTimestamp(airdropData.lastUpdated)})
+                      </span>
+                    )}
+                  </h2>
+                  {!isLoadingAirdrop && !isLoadingTokenMetadata && (
+                  <div
+                    className={`grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 opacity-0 ${!isLoading ? "fade-in" : ""}`}
+                  >
+                    <div className="outline outline-secondary col-span-1">
+                      <div className="stat p-3">
+                        <div className="stat-title text-accent text-xs md:text-sm mb-3 flex items-center gap-2">
+                          {tokenMetadata?.xnm?.logoUrl && (
+                            <img
+                              src={tokenMetadata.xnm.logoUrl}
+                              alt="XNM"
+                              className="w-5 h-5 rounded-full"
+                            />
+                          )}
+                          <a
+                            href={`${config.explorerUrl}/address/${config.xnmTokenMint}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-primary"
+                          >
+                            XNM
+                          </a>
+                        </div>
+                        <div className="stat-value text-accent text-lg md:text-xl">
+                          {formatTokenAmount(onChainXnm)}
+                        </div>
+                        {!isLoadingAirdrop && pendingXnm > 0n && (
+                          <div className="stat-desc md:text-xs mt-2">
+                            <span className="cursor-help border-b border-dotted border-current" title="Pending the next monthly airdrop">+{formatTokenAmount(pendingXnm)} pending</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="outline outline-secondary col-span-1">
+                      <div className="stat p-3">
+                        <div className="stat-title text-accent text-xs md:text-sm mb-3 flex items-center gap-2">
+                          {tokenMetadata?.xblk?.logoUrl && (
+                            <img
+                              src={tokenMetadata.xblk.logoUrl}
+                              alt="XBLK"
+                              className="w-5 h-5 rounded-full"
+                            />
+                          )}
+                          <a
+                            href={`${config.explorerUrl}/address/${config.xblkTokenMint}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-primary"
+                          >
+                            XBLK
+                          </a>
+                        </div>
+                        <div className="stat-value text-accent text-lg md:text-xl">
+                          {formatTokenAmount(onChainXblk)}
+                        </div>
+                        {!isLoadingAirdrop && pendingXblk > 0n && (
+                          <div className="stat-desc md:text-xs mt-2">
+                            <span className="cursor-help border-b border-dotted border-current" title="Pending the next monthly airdrop">+{formatTokenAmount(pendingXblk)} pending</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="outline outline-secondary col-span-1">
+                      <div className="stat p-3">
+                        <div className="stat-title text-accent text-xs md:text-sm mb-3 flex items-center gap-2">
+                          {tokenMetadata?.xuni?.logoUrl && (
+                            <img
+                              src={tokenMetadata.xuni.logoUrl}
+                              alt="XUNI"
+                              className="w-5 h-5 rounded-full"
+                            />
+                          )}
+                          <a
+                            href={`${config.explorerUrl}/address/${config.xuniTokenMint}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-primary"
+                          >
+                            XUNI
+                          </a>
+                        </div>
+                        <div className="stat-value text-accent text-lg md:text-xl">
+                          {formatTokenAmount(onChainXuni)}
+                        </div>
+                        {!isLoadingAirdrop && pendingXuni > 0n && (
+                          <div className="stat-desc md:text-xs mt-2">
+                            <span className="cursor-help border-b border-dotted border-current" title="Pending the next monthly airdrop">+{formatTokenAmount(pendingXuni)} pending</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  )}
+                </>
+              )}
+              {!isLoading && !x1Address && (
+                <div className={`mt-6 opacity-0 ${!isLoading ? "fade-in" : ""}`}>
+                  <h2 className="text-lg mb-2">X1 Airdrop Status</h2>
+                  <p className="text-base-content/70">
+                    No X1 address registered.{" "}
+                    <a
+                      href="https://xenblocks.io/address_migration"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline"
+                    >
+                      Register your X1 address
+                    </a>{" "}
+                    to receive airdrops.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
