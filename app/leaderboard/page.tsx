@@ -82,11 +82,22 @@ export default function Leaderboard() {
   const [limit, setLimit] = useLeaderboardLimit();
 
   const highPage = () => {
-    if (leaderboard.totalMiners === 0 || limit < 1) {
+    if (!leaderboard.miners || limit < 1) {
       return 1;
     }
 
-    return Math.ceil(leaderboard.totalMiners / limit);
+    // If the current page returned a full set of results, there are more pages
+    const hasMore = leaderboard.miners.length >= limit;
+    const totalBasedMax = leaderboard.totalMiners > 0
+      ? Math.ceil(leaderboard.totalMiners / limit)
+      : page;
+
+    if (hasMore) {
+      return Math.max(totalBasedMax, page + 1);
+    }
+
+    // Fewer results than limit means this is the last page
+    return page;
   };
 
   const paginationPages = () => {
