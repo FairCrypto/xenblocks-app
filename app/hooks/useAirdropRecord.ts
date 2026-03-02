@@ -1,20 +1,19 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { fetchAirdropRecord, AirdropRecordResult } from '@/app/lib/solana/accounts';
+import { fetchAirdropRecord } from '@/app/lib/solana/accounts';
+import { AirdropRecordV2 } from '@/app/lib/solana/types';
 
 export interface AirdropData {
-  record: AirdropRecordResult | null;
+  record: AirdropRecordV2 | null;
   xnmAirdropped: bigint;
   xblkAirdropped: bigint;
   xuniAirdropped: bigint;
   nativeAirdropped: bigint;
   lastUpdated: bigint;
-  version: 1 | 2 | null;
 }
 
 export function useAirdropRecord(
-  solAddress: string | null,
   ethAddress: string | null
 ) {
   const [data, setData] = useState<AirdropData | null>(null);
@@ -30,7 +29,7 @@ export function useAirdropRecord(
     setIsLoading(true);
     setError(null);
 
-    fetchAirdropRecord(solAddress, ethAddress)
+    fetchAirdropRecord(ethAddress)
       .then((record) => {
         if (record) {
           setData({
@@ -40,7 +39,6 @@ export function useAirdropRecord(
             xuniAirdropped: record.xuniAirdropped,
             nativeAirdropped: record.nativeAirdropped,
             lastUpdated: record.lastUpdated,
-            version: record.version,
           });
         } else {
           setData({
@@ -50,7 +48,6 @@ export function useAirdropRecord(
             xuniAirdropped: 0n,
             nativeAirdropped: 0n,
             lastUpdated: 0n,
-            version: null,
           });
         }
       })
@@ -61,7 +58,7 @@ export function useAirdropRecord(
       .finally(() => {
         setIsLoading(false);
       });
-  }, [solAddress, ethAddress]);
+  }, [ethAddress]);
 
   return { data, isLoading, error };
 }
