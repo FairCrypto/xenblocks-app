@@ -42,7 +42,6 @@ export default function LeaderboardSlug({
 
   // Fetch airdrop record from on-chain
   const { data: airdropData, isLoading: isLoadingAirdrop } = useAirdropRecord(
-    x1Address || null,
     leaderboardEntry.account || null
   );
 
