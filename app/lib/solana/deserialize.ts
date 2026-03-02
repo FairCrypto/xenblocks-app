@@ -1,14 +1,16 @@
 import { PublicKey } from '@solana/web3.js';
 import {
   AIRDROP_RECORD_OFFSETS,
+  AIRDROP_RECORD_V2_OFFSETS,
   AIRDROP_RECORD_LEGACY_OFFSETS,
   AIRDROP_RECORD_LEGACY_SIZE,
   AirdropRecord,
+  AirdropRecordV2,
 } from './types';
 
 /**
- * Deserialize an AirdropRecord from account data
- * Handles both legacy (99 bytes) and new (155 bytes) schemas
+ * Deserialize an AirdropRecord (V1) from account data
+ * Handles both legacy (99 bytes) and current (155 bytes) V1 schemas
  */
 export function deserializeAirdropRecord(data: Uint8Array): AirdropRecord {
   const buffer = Buffer.from(data);
@@ -29,7 +31,6 @@ export function deserializeAirdropRecord(data: Uint8Array): AirdropRecord {
   );
 
   if (isLegacySchema) {
-    // Legacy schema: single total_airdropped field
     const totalAirdropped = buffer.readBigUInt64LE(
       AIRDROP_RECORD_LEGACY_OFFSETS.TOTAL_AIRDROPPED
     );
@@ -44,13 +45,13 @@ export function deserializeAirdropRecord(data: Uint8Array): AirdropRecord {
       xnmAirdropped: totalAirdropped,
       xblkAirdropped: 0n,
       xuniAirdropped: 0n,
-      reserved: [0n, 0n, 0n, 0n, 0n],
+      nativeAirdropped: 0n,
+      reserved: [0n, 0n, 0n, 0n],
       lastUpdated,
       bump,
     };
   }
 
-  // New schema with separate XNM/XBLK/XUNI fields
   const xnmAirdropped = buffer.readBigUInt64LE(
     AIRDROP_RECORD_OFFSETS.XNM_AIRDROPPED
   );
@@ -60,9 +61,12 @@ export function deserializeAirdropRecord(data: Uint8Array): AirdropRecord {
   const xuniAirdropped = buffer.readBigUInt64LE(
     AIRDROP_RECORD_OFFSETS.XUNI_AIRDROPPED
   );
+  const nativeAirdropped = buffer.readBigUInt64LE(
+    AIRDROP_RECORD_OFFSETS.NATIVE_AIRDROPPED
+  );
 
   const reserved: bigint[] = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 4; i++) {
     reserved.push(
       buffer.readBigUInt64LE(AIRDROP_RECORD_OFFSETS.RESERVED + i * 8)
     );
@@ -77,6 +81,55 @@ export function deserializeAirdropRecord(data: Uint8Array): AirdropRecord {
     xnmAirdropped,
     xblkAirdropped,
     xuniAirdropped,
+    nativeAirdropped,
+    reserved,
+    lastUpdated,
+    bump,
+  };
+}
+
+/**
+ * Deserialize an AirdropRecordV2 from account data (123 bytes, no sol_wallet)
+ */
+export function deserializeAirdropRecordV2(data: Uint8Array): AirdropRecordV2 {
+  const buffer = Buffer.from(data);
+
+  const ethAddress = Array.from(
+    buffer.slice(
+      AIRDROP_RECORD_V2_OFFSETS.ETH_ADDRESS,
+      AIRDROP_RECORD_V2_OFFSETS.XNM_AIRDROPPED
+    )
+  );
+
+  const xnmAirdropped = buffer.readBigUInt64LE(
+    AIRDROP_RECORD_V2_OFFSETS.XNM_AIRDROPPED
+  );
+  const xblkAirdropped = buffer.readBigUInt64LE(
+    AIRDROP_RECORD_V2_OFFSETS.XBLK_AIRDROPPED
+  );
+  const xuniAirdropped = buffer.readBigUInt64LE(
+    AIRDROP_RECORD_V2_OFFSETS.XUNI_AIRDROPPED
+  );
+  const nativeAirdropped = buffer.readBigUInt64LE(
+    AIRDROP_RECORD_V2_OFFSETS.NATIVE_AIRDROPPED
+  );
+
+  const reserved: bigint[] = [];
+  for (let i = 0; i < 4; i++) {
+    reserved.push(
+      buffer.readBigUInt64LE(AIRDROP_RECORD_V2_OFFSETS.RESERVED + i * 8)
+    );
+  }
+
+  const lastUpdated = buffer.readBigInt64LE(AIRDROP_RECORD_V2_OFFSETS.LAST_UPDATED);
+  const bump = buffer.readUInt8(AIRDROP_RECORD_V2_OFFSETS.BUMP);
+
+  return {
+    ethAddress,
+    xnmAirdropped,
+    xblkAirdropped,
+    xuniAirdropped,
+    nativeAirdropped,
     reserved,
     lastUpdated,
     bump,

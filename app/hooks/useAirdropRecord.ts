@@ -1,15 +1,16 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { fetchAirdropRecord } from '@/app/lib/solana/accounts';
-import { AirdropRecord } from '@/app/lib/solana/types';
+import { fetchAirdropRecord, AirdropRecordResult } from '@/app/lib/solana/accounts';
 
 export interface AirdropData {
-  record: AirdropRecord | null;
+  record: AirdropRecordResult | null;
   xnmAirdropped: bigint;
   xblkAirdropped: bigint;
   xuniAirdropped: bigint;
+  nativeAirdropped: bigint;
   lastUpdated: bigint;
+  version: 1 | 2 | null;
 }
 
 export function useAirdropRecord(
@@ -21,7 +22,7 @@ export function useAirdropRecord(
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!solAddress || !ethAddress) {
+    if (!ethAddress) {
       setData(null);
       return;
     }
@@ -37,7 +38,9 @@ export function useAirdropRecord(
             xnmAirdropped: record.xnmAirdropped,
             xblkAirdropped: record.xblkAirdropped,
             xuniAirdropped: record.xuniAirdropped,
+            nativeAirdropped: record.nativeAirdropped,
             lastUpdated: record.lastUpdated,
+            version: record.version,
           });
         } else {
           setData({
@@ -45,7 +48,9 @@ export function useAirdropRecord(
             xnmAirdropped: 0n,
             xblkAirdropped: 0n,
             xuniAirdropped: 0n,
+            nativeAirdropped: 0n,
             lastUpdated: 0n,
+            version: null,
           });
         }
       })
