@@ -1,35 +1,53 @@
 # XENBLOCKS Web App
 
-This is a [Next.js](https://nextjs.org/) project with [Tailwind CSS](https://tailwindcss.com/) and [DaisyUI](https://daisyui.com/) for the UI components.
+A [Vite](https://vite.dev/) + [React](https://react.dev/) + [React Router](https://reactrouter.com/) SPA displaying Proof-of-Work mining information for the [X1 blockchain](https://x1.xyz/). Built with [Tailwind CSS](https://tailwindcss.com/) and [DaisyUI](https://daisyui.com/).
 
 ## Getting Started
 
-> Install [NodeJS](https://nodejs.org/en/download/package-manager) and install the dependencies.
-```shell
-npm install
-```
-
-First, run the development server:
+> Requires [Node.js](https://nodejs.org/) 18+ and [Bun](https://bun.sh/) (or npm/yarn).
 
 ```bash
-npm run dev
+bun install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a `.env` file from the example:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env
+```
+
+Run the development server:
+
+```bash
+bun run dev
+```
+
+Open [http://localhost:3001](http://localhost:3001) in your browser.
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `bun run dev` | Start dev server on port 3001 |
+| `bun run build` | Type-check and build for production (`dist/`) |
+| `bun run preview` | Preview production build on port 3001 |
+| `bun run lint` | Run ESLint |
+
+## Tech Stack
+
+- **Build**: [Vite](https://vite.dev/) 7 + [TypeScript](https://www.typescriptlang.org/) 5
+- **UI**: [React](https://react.dev/) 19 + [React Router](https://reactrouter.com/) 7
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) 3.4 + [DaisyUI](https://daisyui.com/) 4.12
+- **Blockchain**: [Solana Web3.js](https://solana-labs.github.io/solana-web3.js/) + [@solana/spl-token](https://www.npmjs.com/package/@solana/spl-token)
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+- [Vite Documentation](https://vite.dev/guide/)
+- [React Documentation](https://react.dev/learn)
+- [React Router Documentation](https://reactrouter.com/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [DaisyUI Documentation](https://daisyui.com/docs)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- Tailwind CSS [Documentation](https://tailwindcss.com/docs) - learn about Tailwind CSS features and API.
-- DaisyUI [Documentation](https://daisyui.com/docs) - learn about DaisyUI features and API.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Github Pages
-
-Just push your code to the `main` branch and it will be automatically deployed to Github Pages.
+Push to the `main` branch for automatic deployment to Vercel.
