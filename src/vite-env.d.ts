@@ -9,6 +9,10 @@ interface ImportMetaEnv {
   readonly VITE_XNM_TOKEN_MINT: string;
   readonly VITE_XBLK_TOKEN_MINT: string;
   readonly VITE_XUNI_TOKEN_MINT: string;
+  readonly VITE_SQUADS_PROGRAM_ID: string;
+  readonly VITE_SQUADS_MULTISIG_ACCOUNT: string;
+  readonly VITE_SQUADS_VAULT_INDEX: string;
+  readonly VITE_AIRDROP_BOT_AUTH: string;
 }
 
 interface ImportMeta {
